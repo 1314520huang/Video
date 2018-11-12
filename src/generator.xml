@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
+<generatorConfiguration>  
+    <classPathEntry  location="mysql-connector-java-8.0.12.jar"/>  
+    <context id="DB2Tables"  targetRuntime="MyBatis3">  
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
+        <commentGenerator>  
+            <property name="suppressDate" value="true"/>  
+            <property name="suppressAllComments" value="false"/>  
+        </commentGenerator>
+        
+        <jdbcConnection 
+            driverClass="com.mysql.cj.jdbc.Driver" 
+            connectionURL="jdbc:mysql://localhost:3306/video?characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=GMT%2B8" 
+            userId="root" 
+            password="0337@ch">  
+        </jdbcConnection>
+
+        
+        <javaTypeResolver>  
+            <property name="forceBigDecimals" value="false"/>  
+        </javaTypeResolver>  
+        <javaModelGenerator targetPackage="com.video.model" targetProject="E:/Code/share/Video/src">  
+            <property name="enableSubPackages" value="true"/>  
+            <property name="trimStrings" value="true"/>  
+        </javaModelGenerator>  
+ 
+        <sqlMapGenerator targetPackage="com.video.dao.mapper" targetProject="E:/Code/share/Video/src">  
+            <property name="enableSubPackages" value="true"/>  
+        </sqlMapGenerator>  
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.video.dao" targetProject="E:/Code/share/Video/src">  
+            <property name="enableSubPackages" value="true"/>  
+        </javaClientGenerator>  
+        
+  
+    <table tableName="user" domainObjectName="User" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
+    <table tableName="discuss" domainObjectName="Discuss" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
+    <table tableName="star" domainObjectName="Star" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
+    <table tableName="video" domainObjectName="Video" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
+    <table tableName="noteboard" domainObjectName="NoteBoard" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
+    <table tableName="type" domainObjectName="Type" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
+    <table tableName="file" domainObjectName="File" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
+   
+    <!-- **-->
+  <!--    
+    <table tableName="feedback" domainObjectName="FeedBack" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+    <table tableName="food" domainObjectName="Food" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+    <table tableName="groom" domainObjectName="Groom" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+    <table tableName="seller" domainObjectName="Seller" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+    <table tableName="setting" domainObjectName="Setting" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+    <table tableName="student" domainObjectName="Student" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+    <table tableName="photo" domainObjectName="Photo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+    <table tableName="content" domainObjectName="Content" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+-->   
+ </context>  
+</generatorConfiguration>

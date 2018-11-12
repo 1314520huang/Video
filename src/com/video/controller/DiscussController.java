@@ -1,0 +1,55 @@
+package com.video.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.video.model.AjaxResponse;
+import com.video.model.Discuss;
+import com.video.service.IDiscussService;
+import com.video.util.Remarks;
+
+@Controller
+@RequestMapping("/discusses")
+public class DiscussController extends BaseController {
+
+	@Autowired
+	private IDiscussService discussService;
+
+	@PostMapping("")
+	@ResponseBody
+	@Remarks("添加评论")
+	public AjaxResponse add(Discuss discuss) {
+
+		AjaxResponse response = new AjaxResponse();
+		discussService.add(discuss);
+		return response;
+	}
+
+	@PatchMapping("")
+	@ResponseBody
+	@Remarks("删除评论")
+	public AjaxResponse delete(String discussId) {
+
+		AjaxResponse response = new AjaxResponse();
+		discussService.delete(discussId);
+		return response;
+	}
+
+	@GetMapping("")
+	@ResponseBody
+	@Remarks("对应电影下的评论列表")
+	public AjaxResponse list(String videoId) {
+
+		AjaxResponse response = new AjaxResponse();
+		List<Discuss> discusses = discussService.list(videoId);
+		response.setData(discusses);
+		return response;
+	}
+}
