@@ -40,7 +40,7 @@ public class VideoController extends BaseController {
 		return response;
 	}
 
-	@GetMapping("")
+	@GetMapping("/show")
 	@ResponseBody
 	@Remarks("显示视频资源")
 	public AjaxResponse show(HttpServletResponse response, String videoId, String userId) {

@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html;charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %> 
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<link rel="stylesheet" href="${ctx}/static/layui/layui.css" media="all">
+
+<script type="text/javascript" src="${ctx }/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="${ctx }/js/vue.js"></script>
+<script type="text/javascript" src="${ctx }/layui/layui.js"></script>
+
+
+<link style="text/css" href="${ctx }/layui/css/layui.css"></link>
+<link style="text/css" href="${ctx }/css/style.css"></link>
+<link style="text/css" href="${ctx }/css/basic.css"></link>

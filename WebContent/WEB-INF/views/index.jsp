@@ -1,23 +1,35 @@
 <%@ page language="java" contentType="text/html;charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ include file="common.jsp"%>
 <!DOCTYPE html>
-<html lang="en-US">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link>
-<title></title>
+<meta charset="UTF-8">
+<title>首页</title>
+<%@include file="common.jsp"%>
 </head>
-<body>
+<body style="background:#1a1a1a url(images/background.jpg) top center no-repeat;">
 	<jsp:include page="head.jsp"></jsp:include>
-	<div>
+	<div class="main">
 		<div>
-			<!-- 主页布局 -->
+		<!-- 条件查询占用 -->
 		</div>
-		<div>
-			<!-- 影片列表 -->
+		<div v-for="videoDiv">
+		<!-- 电影列表渲染占用 -->
+		
 		</div>
 	</div>
-	<jsp:include page="foot.jsp"></jsp:include>
+	<div class="footer w3layouts agileits">
+		<jsp:include page="foot.jsp"></jsp:include>
+	</div>
 </body>
+<script type="text/javascript">
+	var vm = new Vue({
+		el : 'videoDiv',
+		data : {
+			videos:[]
+		}
+	})
+	
+	
+</script>
 </html>

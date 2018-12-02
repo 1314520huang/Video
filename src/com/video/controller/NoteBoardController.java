@@ -2,6 +2,8 @@ package com.video.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,10 +27,10 @@ public class NoteBoardController extends BaseController {
 	@PostMapping("")
 	@ResponseBody
 	@Remarks("添加新的留言记录")
-	public AjaxResponse add(NoteBoard noteBoard) {
+	public AjaxResponse add(HttpServletRequest request, NoteBoard noteBoard) {
 
 		AjaxResponse response = new AjaxResponse();
-		noteBoardService.add(noteBoard);
+		noteBoardService.add(request, noteBoard);
 		return response;
 	}
 

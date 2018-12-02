@@ -2,6 +2,8 @@ package com.video.service.impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,7 +36,9 @@ public class UserService implements IUserService {
 			String salt = StringUtil.getSalt();
 			user.setSalt(salt);
 			user.setPassword(PasswordUtil.encode(user.getPassword(), salt));
-			user.setLeval("1");
+			user.setState("1");
+			user.setLevel("1");
+			user.setRealName(StringUtil.isNotNull(user.getRealName()) ? user.getRealName() : "匿名用户");
 			userMapper.insert(user);
 		} else {
 			throw new AIException("当前用户名已存在");
@@ -52,7 +56,12 @@ public class UserService implements IUserService {
 	@Override
 	public void update(User user) {
 
-		userMapper.updateByPrimaryKey(user);
+		String password = user.getPassword();
+		if (StringUtil.isNotNull(password)) {
+			password = PasswordUtil.encode(password, user.getSalt());
+			user.setPassword(password);
+		}
+		userMapper.updateByPrimaryKeySelective(user);
 	}
 
 	@Override
@@ -62,8 +71,9 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public User login(String loginName, String password, AjaxResponse response) {
+	public AjaxResponse login(String loginName, String password, HttpServletRequest request) {
 
+		AjaxResponse response = new AjaxResponse();
 		UserExample example = new UserExample();
 		example.createCriteria().andLoginNameEqualTo(loginName).andStateEqualTo("1");
 		int cnt = userMapper.countByExample(example);
@@ -71,16 +81,16 @@ public class UserService implements IUserService {
 		if (cnt != 0) {
 			user = userMapper.selectByExample(example).get(0);
 			if (PasswordUtil.decode(password, user.getSalt(), user.getPassword())) {
-				return user;
+				response.setData(user);
+				request.getSession().setAttribute("usr", user);
+				return response;
 			} else {
 				response.setCode(ErrorCode.USER_INVALID_PASSWORD);
-				response.setMessage("账号或密码不正确");
-				return null;
+				throw new AIException("账号或密码不正确");
 			}
 		} else {
 			response.setCode(ErrorCode.USER_INVALID_USER);
-			response.setMessage("当前用户尚未注册");
-			return null;
+			throw new AIException("当前用户尚未注册");
 		}
 	}
 
@@ -88,7 +98,7 @@ public class UserService implements IUserService {
 	public boolean isExists(String loginName) {
 
 		UserExample example = new UserExample();
-		example.createCriteria().andLoginNameEqualTo(loginName).andStateEqualTo("1");
+		example.createCriteria().andLoginNameEqualTo(loginName);
 		int cnt = userMapper.countByExample(example);
 		return cnt != 0;
 	}
@@ -100,7 +110,7 @@ public class UserService implements IUserService {
 		example.createCriteria().andStateEqualTo("1");
 		example.setOrderByClause(" value asc ");
 		Page page = new Page(pageSize, pageIndex);
-//		return userMapper.selectByExampleWithRowbounds(example, page);
+		// return userMapper.selectByExampleWithRowbounds(example, page);
 		return null;
 	}
 }

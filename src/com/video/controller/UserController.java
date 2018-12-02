@@ -2,10 +2,13 @@ package com.video.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,11 +29,20 @@ public class UserController extends BaseController {
 	@PostMapping("/login")
 	@ResponseBody
 	@Remarks("登录操作")
-	public AjaxResponse login(String loginName, String password) {
+	public AjaxResponse login(HttpServletRequest request, String loginName, String password) {
+
+		AjaxResponse response = userService.login(loginName, password, request);
+		return response;
+	}
+
+	@RequestMapping("/logout")
+	@ResponseBody
+	@Remarks("登出操作")
+	public AjaxResponse logout(HttpServletRequest request) {
 
 		AjaxResponse response = new AjaxResponse();
-		User user = userService.login(loginName, password, response);
-		response.setData(user);
+		request.getSession().removeAttribute("usr");
+		response.setMessage("登出成功");
 		return response;
 	}
 
@@ -46,7 +58,7 @@ public class UserController extends BaseController {
 	@GetMapping("/{userId}")
 	@ResponseBody
 	@Remarks("个人信息")
-	public AjaxResponse info(String userId) {
+	public AjaxResponse info(@PathVariable("userId") String userId) {
 
 		AjaxResponse response = new AjaxResponse();
 		User user = userService.info(userId);

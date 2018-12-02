@@ -2,6 +2,8 @@ package com.video.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.video.model.AjaxResponse;
 import com.video.model.User;
 
@@ -15,7 +17,7 @@ public interface IUserService {
 	
 	User info(String userId);
 	
-	User login(String loginName, String password, AjaxResponse response);
+	AjaxResponse login(String loginName, String password, HttpServletRequest request);
 	
 	boolean isExists(String loginName);
 	

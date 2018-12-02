@@ -2,13 +2,17 @@ package com.video.service.impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.video.dao.NoteBoardMapper;
+import com.video.exception.AIException;
 import com.video.model.NoteBoard;
 import com.video.model.NoteBoardExample;
+import com.video.model.User;
 import com.video.service.INoteBoardService;
 import com.video.util.DateUtil;
 import com.video.util.StringUtil;
@@ -21,10 +25,16 @@ public class NoteBoardService implements INoteBoardService {
 	private NoteBoardMapper noteBoardMapper;
 
 	@Override
-	public void add(NoteBoard board) {
+	public void add(HttpServletRequest request, NoteBoard board) {
 
+		User user = (User) request.getSession().getAttribute("usr");
+		if (user == null)
+			throw new AIException("用户尚未登录，无法进行留言");
+		board.setUserId(user.getId());
+		board.setUserName(user.getRealName());
 		board.setId(StringUtil.getUUID());
 		board.setCreateTime(DateUtil.getNowTime());
+		board.setState("1");
 		noteBoardMapper.insert(board);
 	}
 
@@ -42,6 +52,7 @@ public class NoteBoardService implements INoteBoardService {
 		NoteBoardExample example = new NoteBoardExample();
 		example.createCriteria().andStateEqualTo("1");
 		example.setOrderByClause(" create_time desc ");
-		return noteBoardMapper.selectByExample(example);
+		List<NoteBoard> list = noteBoardMapper.selectByExample(example).subList(0, 10);
+		return list;
 	}
 }

@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.video.dao.VideoMapper;
 import com.video.exception.AIException;
-import com.video.model.Page;
 import com.video.model.Video;
 import com.video.model.VideoExample;
 import com.video.service.IFileService;
@@ -70,28 +69,30 @@ public class VideoService implements IVideoService {
 	@Override
 	public List<Video> list(int pageIndex, int pageSize) {
 
-		Page page = new Page(pageSize, pageIndex);
 		VideoExample example = new VideoExample();
 		example.createCriteria().andStateEqualTo("1");
 		example.setOrderByClause(" create_time desc ");
-//		return videoMapper.selectByExampleWithRowbounds(example, page);
-		return null;
+		int start = (pageIndex - 1) * pageSize;
+		List<Video> list = videoMapper.selectByExample(example);
+		int end = (pageIndex * pageSize < list.size()) ? (pageIndex * pageSize) : list.size();
+		return list.subList(start, end);
 	}
-	
+
 	@Override
 	public List<Video> love(int pageIndex, int pageSize) {
 
-		Page page = new Page(pageSize, pageIndex);
 		VideoExample example = new VideoExample();
 		example.createCriteria().andStateEqualTo("1");
 		example.setOrderByClause(" create_time desc ");
-//		return videoMapper.selectByExampleWithRowbounds(example, page);
-		return null;
+		int start = (pageIndex - 1) * pageSize;
+		List<Video> list = videoMapper.selectByExample(example);
+		int end = (pageIndex * pageSize < list.size()) ? (pageIndex * pageSize) : list.size();
+		return list.subList(start, end);
 	}
 
 	@Override
 	public List<Video> search(Video video) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 }
