@@ -3,9 +3,10 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>你所访问的界面不存在</title>
+		<%@ include file="common.jsp"%>
 	</head>
 	<body>
-
+		<img alt="" src="${ctx }/images/404.jpg">
 	</body>
 </html>

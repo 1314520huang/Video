@@ -8,7 +8,7 @@
 
 <script type="text/javascript" src="${ctx }/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="${ctx }/js/vue.js"></script>
-<script type="text/javascript" src="${ctx }/layui/layui.js"></script>
+<script type="text/javascript" src="${ctx }/static/layui/layui.js"></script>
 
 
 <link style="text/css" href="${ctx }/layui/css/layui.css"></link>

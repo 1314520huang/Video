@@ -37,7 +37,7 @@ public class PageController extends BaseController {
 		return "star";
 	}
 
-	@RequestMapping("/admin/{page}")
+	@RequestMapping("/{page}")
 	@Remarks("跳转到对应的管理界面")
 	public String admin(HttpServletRequest request, @PathVariable("page") String page) {
 		

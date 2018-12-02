@@ -15,7 +15,7 @@
 </style>
 </head>
 
-<body>
+<body style="background:#1a1a1a url(images/background.jpg) top center no-repeat;">
 
 	<jsp:include page="head.jsp"></jsp:include>
 	<div>

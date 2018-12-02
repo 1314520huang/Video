@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>首页</title>
-<%@include file="common.jsp"%>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<%@include file="common.jsp"%>
 </head>
 <body style="background:#1a1a1a url(images/background.jpg) top center no-repeat;">
 	<jsp:include page="head.jsp"></jsp:include>
