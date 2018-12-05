@@ -45,6 +45,6 @@ public class PasswordUtil {
 
 	public static void main(String[] args) {
 
-		System.out.println(blend("123456"));
+		System.out.println(encode("123", "a67cb6"));
 	}
 }

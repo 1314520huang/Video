@@ -42,7 +42,7 @@ public class TypeService implements ITypeService {
 
 	private void update(Type type) {
 
-		typeMapper.updateByPrimaryKey(type);
+		typeMapper.updateByPrimaryKeySelective(type);
 	}
 
 	@Override

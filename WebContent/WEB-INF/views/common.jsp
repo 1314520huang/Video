@@ -9,8 +9,10 @@
 <script type="text/javascript" src="${ctx }/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="${ctx }/js/vue.js"></script>
 <script type="text/javascript" src="${ctx }/static/layui/layui.js"></script>
+<script type="text/javascript" src="${ctx }/static/loading/js/loading.js"></script>
 
 
-<link style="text/css" href="${ctx }/layui/css/layui.css"></link>
-<link style="text/css" href="${ctx }/css/style.css"></link>
-<link style="text/css" href="${ctx }/css/basic.css"></link>
+<link style="text/css" href="${ctx }/static/layui/css/layui.css"></link>
+<link style="text/css" href="${ctx }/static/loading/css/loading.css"></link>
+<%-- <link style="text/css" href="${ctx }/css/style.css"></link>
+<link style="text/css" href="${ctx }/css/basic.css"></link> --%>

@@ -10,10 +10,31 @@
 	<title>登录/注册</title>
 	<%@ include file="common.jsp"%>
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+	<style type="text/css">
+	.button {
+		-webkit-border-radius: 28;
+		-moz-border-radius: 28;
+		border-radius: 28px;
+		text-shadow: 0px 1px 0px #2f6627;
+		font-family: Arial;
+		color: #ffffff;
+		font-size: 16px;
+		background: #44c767;
+		padding: 12px 30px 12px 30px;
+		border: solid #18ab29 1px;
+		text-decoration: none;
+	}
+	
+	.button:hover {
+		color: #ffffff;
+		background: #5cbf2a;
+		text-decoration: none;
+	}
+	</style>
 </head>
 
 <!-- Body -->
-<body style="background:#1a1a1a url(images/background.jpg) top center no-repeat;">
+<body style="background: #1a1a1a url(images/background.jpg) top center no-repeat;">
 
 	<jsp:include page="head.jsp"></jsp:include>
 
@@ -22,19 +43,16 @@
 		<div class="login w3layouts agileits">
 			<h2>登 录</h2>
 			<input type="text" Name="loginName" id="loginName" placeholder="用户名">
-			<input type="password" Name="password" id="loginPass"
-				placeholder="密码"> <input type="button" value="登 录"
-				class="layui-btn layui-btn-primary layui-btn-normal" id="login">
+			<input type="password" Name="password" id="loginPass" placeholder="密码">
+			<input type="button" style="border: none; background-color: #42df2b; color: white; border-radius: 5px; width: 80px; height: 30px;" value="登 录" id="login">
 			<div class="clear"></div>
 		</div>
 		<div class="register w3layouts agileits">
 			<h2>注 册</h2>
-			<input type="text" Name="loginName" id="registerName"
-				placeholder="用户名"> <input type="password" Name="password"
-				id="regiPass" placeholder="密码"> <input type="password"
-				Name="rePassword" id="rePass" placeholder="再次输入"> <input
-				type="button" value="免费注册"
-				class="layui-btn layui-btn-primary layui-btn-normal" id="register">
+			<input type="text" Name="loginName" id="registerName" placeholder="用户名"> 
+			<input type="password" Name="password" id="regiPass" placeholder="密码"> 
+			<input type="password" Name="rePassword" id="rePass" placeholder="再次输入"> 
+			<input type="button" style="border: none; background-color: #42df2b; color: white; border-radius: 5px; width: 80px; height: 30px;" value="免费注册" id="register">
 			<div class="clear"></div>
 		</div>
 

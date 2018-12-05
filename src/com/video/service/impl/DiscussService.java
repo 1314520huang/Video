@@ -2,15 +2,20 @@ package com.video.service.impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.video.dao.DiscussMapper;
+import com.video.exception.AIException;
 import com.video.model.Discuss;
 import com.video.model.DiscussExample;
+import com.video.model.User;
 import com.video.service.IDiscussService;
 import com.video.util.DateUtil;
+import com.video.util.StaticVals;
 import com.video.util.StringUtil;
 
 @Service
@@ -30,19 +35,25 @@ public class DiscussService implements IDiscussService {
 	}
 
 	@Override
-	public void add(Discuss discuss) {
+	public void add(HttpServletRequest request, Discuss discuss) {
 
+		User user = (User) request.getSession().getAttribute("usr");
+		if (user == null)
+			throw new AIException(StaticVals.MSG);
 		discuss.setId(StringUtil.getUUID());
 		discuss.setDiscussTime(DateUtil.getNowTime());
 		discussMapper.insert(discuss);
 	}
 
 	@Override
-	public void delete(String videoId) {
+	public void delete(HttpServletRequest request, String videoId) {
 
+		User user = (User) request.getSession().getAttribute("usr");
+		if (user == null)
+			throw new AIException(StaticVals.MSG);
 		Discuss discuss = info(videoId);
 		discuss.setState("0");
-		discussMapper.updateByPrimaryKey(discuss);
+		discussMapper.updateByPrimaryKeySelective(discuss);
 	}
 
 	private Discuss info(String videoId) {

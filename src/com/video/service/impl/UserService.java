@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.video.dao.UserMapper;
 import com.video.exception.AIException;
 import com.video.model.AjaxResponse;
-import com.video.model.Page;
 import com.video.model.User;
 import com.video.model.UserExample;
 import com.video.service.IUserService;
@@ -37,7 +36,7 @@ public class UserService implements IUserService {
 			user.setSalt(salt);
 			user.setPassword(PasswordUtil.encode(user.getPassword(), salt));
 			user.setState("1");
-			user.setLevel("1");
+			user.setLevel("普通用户");
 			user.setRealName(StringUtil.isNotNull(user.getRealName()) ? user.getRealName() : "匿名用户");
 			userMapper.insert(user);
 		} else {
@@ -57,8 +56,9 @@ public class UserService implements IUserService {
 	public void update(User user) {
 
 		String password = user.getPassword();
+		String salt = userMapper.selectByPrimaryKey(user.getId()).getSalt();
 		if (StringUtil.isNotNull(password)) {
-			password = PasswordUtil.encode(password, user.getSalt());
+			password = PasswordUtil.encode(password, salt);
 			user.setPassword(password);
 		}
 		userMapper.updateByPrimaryKeySelective(user);
@@ -107,10 +107,11 @@ public class UserService implements IUserService {
 	public List<User> list(int pageIndex, int pageSize) {
 
 		UserExample example = new UserExample();
-		example.createCriteria().andStateEqualTo("1");
-		example.setOrderByClause(" value asc ");
-		Page page = new Page(pageSize, pageIndex);
-		// return userMapper.selectByExampleWithRowbounds(example, page);
-		return null;
+		example.createCriteria().andStateNotEqualTo("2").andLevelNotEqualTo("2");
+		example.setOrderByClause(" create_time desc ");
+		int start = (pageIndex - 1) * pageSize;
+		List<User> list = userMapper.selectByExample(example);
+		int end = (pageIndex * pageSize < list.size()) ? (pageIndex * pageSize) : list.size();
+		return list.subList(start, end);
 	}
 }

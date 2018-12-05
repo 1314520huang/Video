@@ -12,7 +12,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.video.dao.FileMapper;
 import com.video.exception.AIException;
+import com.video.model.User;
 import com.video.service.IFileService;
+import com.video.util.StaticVals;
 import com.video.util.StringUtil;
 
 @Transactional
@@ -31,6 +33,7 @@ public class FileService implements IFileService {
 		String fileName = file.getOriginalFilename();
 		String suffix = fileName.substring(fileName.indexOf('.'));
 		String url = request.getSession().getServletContext().getRealPath("/") + "/upload/" + id + suffix;
+		String url1 = request.getContextPath() + "/upload/" + id + suffix;
 		try {
 			file.transferTo(new File(url));
 			com.video.model.File file2 = new com.video.model.File();
@@ -40,12 +43,15 @@ public class FileService implements IFileService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return id;
+		return url1;
 	}
 
 	@Override
-	public String show(HttpServletResponse response, String fileId) {
+	public String show(HttpServletRequest request, HttpServletResponse response, String fileId) {
 
+		User user = (User) request.getSession().getAttribute("usr");
+		if (user == null)
+			throw new AIException(StaticVals.MSG);
 		com.video.model.File file = fileMapper.selectByPrimaryKey(fileId);
 		return file.getUrl();
 	}

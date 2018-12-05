@@ -15,6 +15,7 @@ import com.video.model.NoteBoardExample;
 import com.video.model.User;
 import com.video.service.INoteBoardService;
 import com.video.util.DateUtil;
+import com.video.util.StaticVals;
 import com.video.util.StringUtil;
 
 @Service
@@ -29,7 +30,7 @@ public class NoteBoardService implements INoteBoardService {
 
 		User user = (User) request.getSession().getAttribute("usr");
 		if (user == null)
-			throw new AIException("用户尚未登录，无法进行留言");
+			throw new AIException(StaticVals.MSG);
 		board.setUserId(user.getId());
 		board.setUserName(user.getRealName());
 		board.setId(StringUtil.getUUID());
@@ -43,7 +44,7 @@ public class NoteBoardService implements INoteBoardService {
 
 		NoteBoard board = noteBoardMapper.selectByPrimaryKey(noteId);
 		board.setState("0");
-		noteBoardMapper.updateByPrimaryKey(board);
+		noteBoardMapper.updateByPrimaryKeySelective(board);
 	}
 
 	@Override
@@ -52,7 +53,8 @@ public class NoteBoardService implements INoteBoardService {
 		NoteBoardExample example = new NoteBoardExample();
 		example.createCriteria().andStateEqualTo("1");
 		example.setOrderByClause(" create_time desc ");
-		List<NoteBoard> list = noteBoardMapper.selectByExample(example).subList(0, 10);
-		return list;
+		List<NoteBoard> list = noteBoardMapper.selectByExample(example);
+		int end = list.size() > 10 ? 10 : list.size();
+		return list.subList(0, end);
 	}
 }

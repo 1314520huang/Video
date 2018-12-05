@@ -1,14 +1,18 @@
 <%@ page language="java" contentType="text/html;charset=utf-8"
 	pageEncoding="utf-8"%>
+<%
+	boolean isLogin = Boolean.parseBoolean(request.getParameter("isLogin"));
+%>
 <html>
 <head>
-<title>影视预约</title>
-<%@ include file="common.jsp"%>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<meta name="description" content="Your description goes here" />
-<meta name="keywords" content="your,keywords,goes,here" />
-<meta name="author" content="Your Name" />
-
+	<title>影视预约</title>
+	<%@ include file="common.jsp"%>
+	<link rel="stylesheet" href="${ctx }/static/layui/css/layui.css" media="all">
+	<script type="text/javascript" src="${ctx }/js/vue.js"></script>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="Your description goes here" />
+	<meta name="keywords" content="your,keywords,goes,here" />
+	<meta name="author" content="Your Name" />
 <style type="text/css">
 * {
 	margin: 0;
@@ -134,24 +138,57 @@ h1 {
 			</div>
 			<input id="postBt" type="button"
 				style="border: none; background-color: #3EADC5; color: white; border-radius: 5px; width: 80px; height: 30px;"
-				value="发表留言" /> <input id="clearBt" type="button"
+				value="发表留言" /> 
+			<input id="clearBt" type="button"
 				style="border: none; background-color: #3EADC5; color: white; border-radius: 5px; width: 80px; height: 30px;"
 				value="清空" />
 		</div>
 		<div>
-			<!-- 最新十条的预约信息留言区 -->
 		
-		</div>
+		<h2 style="background-color: white;">为您展示最新十条信息</h2>
+			<!-- 最新十条的预约信息留言区 -->
+		<c:if test="${isLogin == true}">
+		
+			<div style="background-color: white;">
+				<table class="table layui-table">
+					<thead style="text-align: center;">
+						<tr>
+							<th style="text-align: center;">序号</th>
+							<th style="text-align: center;">用户名</th>
+							<th style="text-align: center;">预约信息</th>
+							<th style="text-align: center;">创建时间</th>
+						</tr>
+					</thead>
+					<tbody id="boardDiv" style="text-align: center;">
+						<tr v-for="(discuss,index) in discusses">
+							<td>{{index + 1}}</td>
+							<td>{{discuss.userName}}</td>
+							<td>{{discuss.remark}}</td>
+							<td>{{discuss.createTime}}</td>
+						</tr>
+					</tbody>
+					<tbody id='noData' style="display: none;"><tr><td colspan="4"><span style="color: red; text-align: center;">暂无数据</span><td></tr></tbody>
+				</table>
+			</div>
+			</c:if>
+			<c:if test="${isLogin == false}">
+				<div  style="background-color: white;">
+					尚未登录，无法访问最新预约信息，<a href="${ctx }/info">点我登录</a>
+				</div>
+			</c:if>
 		<div id="comment"></div>
 	</div>
-
-	<div id="footer">
-		<jsp:include page="foot.jsp"></jsp:include>
-	</div>
-	</div>
+	<jsp:include page="foot.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
 	var ctx = "${ctx}";
+	var login = <%=isLogin%>;
+	var vm = new Vue({
+		el : "#boardDiv",
+		data : {
+			discusses : []
+		}
+	});
 	$(function() {
 		$("#postBt").click(function() {
 			var remark = $("#remark").val();
@@ -175,7 +212,29 @@ h1 {
 		});
 		$("#clearBt").click(function() {
 			$("#remark").val("");
-		})
+		});
+// 		if(login)
+			getDiscuss();
 	})
+	
+	function getDiscuss() {
+		
+		$.ajax({
+			url : '${ctx}/boards',
+			method : 'get',
+			dataType : 'json',
+			success : function(res) {
+				debugger;
+				if(res.code == 0) {
+					vm.discusses = res.data;
+					if(res.data.length == 0) {
+						$("#noData").css("display","block");
+						$("#boardDiv").css("display","none");
+					}
+				} else
+					alert(res.messsage);
+			}
+		})
+	}
 </script>
 </html>

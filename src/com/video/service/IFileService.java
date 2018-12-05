@@ -9,5 +9,5 @@ public interface IFileService {
 
 	String upload(HttpServletRequest request, MultipartFile file);
 
-	String show(HttpServletResponse response, String fileId);
+	String show(HttpServletRequest request, HttpServletResponse response, String fileId);
 }

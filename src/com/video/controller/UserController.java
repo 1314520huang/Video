@@ -3,11 +3,11 @@ package com.video.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,12 +37,13 @@ public class UserController extends BaseController {
 
 	@RequestMapping("/logout")
 	@ResponseBody
-	@Remarks("登出操作")
-	public AjaxResponse logout(HttpServletRequest request) {
+	@Remarks("登出操作，同时跳转到登录界面")
+	public AjaxResponse logout(HttpServletRequest request, HttpServletResponse respons) throws Exception {
 
 		AjaxResponse response = new AjaxResponse();
 		request.getSession().removeAttribute("usr");
 		response.setMessage("登出成功");
+		respons.sendRedirect("../info");
 		return response;
 	}
 
@@ -66,7 +67,7 @@ public class UserController extends BaseController {
 		return response;
 	}
 
-	@PatchMapping("")
+	@RequestMapping("/update")
 	@ResponseBody
 	@Remarks("更新用户信息")
 	public AjaxResponse update(User user) {
@@ -81,7 +82,7 @@ public class UserController extends BaseController {
 	public AjaxResponse list(String pageNum, String pageIndex) {
 
 		AjaxResponse response = new AjaxResponse();
-		int index = 1, num = 12;
+		int index = 1, num = 16;
 		if (StringUtil.isNotNull(pageIndex))
 			index = Integer.parseInt(pageIndex);
 		if (StringUtil.isNotNull(pageNum))

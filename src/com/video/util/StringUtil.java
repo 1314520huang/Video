@@ -50,6 +50,17 @@ public class StringUtil {
 		return str1.compareTo(str2) == 0;
 	}
 	
+	public static int[] getInt(String index, String size) {
+		
+		int pageIndex = 1, pageSize = 10;
+		if(StringUtil.isNotNull(index))	pageIndex = Integer.parseInt(index);
+		if(StringUtil.isNotNull(size))	pageSize = Integer.parseInt(size);
+		int[] value = new int[2];
+		value[0] = pageIndex;
+		value[1] = pageSize;
+		return value;
+	}
+	
 	/**
 	 * 获取指定长度的字符串
 	 * 

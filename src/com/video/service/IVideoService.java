@@ -2,13 +2,14 @@ package com.video.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.video.model.Video;
 
 public interface IVideoService {
 
-	void upload(Video video, String pid);
+	void upload(HttpServletRequest request, Video video);
 	
 	void download(HttpServletResponse response, String videoId, String userId);
 	
@@ -16,7 +17,7 @@ public interface IVideoService {
 	
 	void update(Video video);
 	
-	void show(HttpServletResponse response, String videoId, String userId);
+	String show(HttpServletRequest request, HttpServletResponse response, String videoId, String userId);
 	
 	List<Video> list(int pageIndex, int pageSize);
 	

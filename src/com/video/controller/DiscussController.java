@@ -2,6 +2,8 @@ package com.video.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,20 +27,20 @@ public class DiscussController extends BaseController {
 	@PostMapping("")
 	@ResponseBody
 	@Remarks("Ìí¼ÓÆÀÂÛ")
-	public AjaxResponse add(Discuss discuss) {
+	public AjaxResponse add(HttpServletRequest request, Discuss discuss) {
 
 		AjaxResponse response = new AjaxResponse();
-		discussService.add(discuss);
+		discussService.add(request, discuss);
 		return response;
 	}
 
 	@PatchMapping("")
 	@ResponseBody
 	@Remarks("É¾³ýÆÀÂÛ")
-	public AjaxResponse delete(String discussId) {
+	public AjaxResponse delete(HttpServletRequest request, String discussId) {
 
 		AjaxResponse response = new AjaxResponse();
-		discussService.delete(discussId);
+		discussService.delete(request, discussId);
 		return response;
 	}
 

@@ -14,7 +14,7 @@ public class MybatisGenerator {
 	public static void main(String[] args) throws Exception {
 		List<String> warnings = new ArrayList<String>();
 		boolean overwrite = true;
-		File configFile = new File("E:/Code/share/Video/src/generator.xml");
+		File configFile = new File("*/Video/src/generator.xml");
 		ConfigurationParser cp = new ConfigurationParser(warnings);
 		Configuration config = cp.parseConfiguration(configFile);
 		DefaultShellCallback callback = new DefaultShellCallback(overwrite);

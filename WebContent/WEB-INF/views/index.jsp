@@ -18,9 +18,7 @@
 		
 		</div>
 	</div>
-	<div class="footer w3layouts agileits">
-		<jsp:include page="foot.jsp"></jsp:include>
-	</div>
+	<jsp:include page="foot.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
 	var vm = new Vue({

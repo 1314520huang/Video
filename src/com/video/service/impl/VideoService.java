@@ -2,6 +2,7 @@ package com.video.service.impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.video.dao.VideoMapper;
 import com.video.exception.AIException;
+import com.video.model.User;
 import com.video.model.Video;
 import com.video.model.VideoExample;
 import com.video.service.IFileService;
 import com.video.service.IVideoService;
+import com.video.util.DateUtil;
+import com.video.util.StaticVals;
 import com.video.util.StringUtil;
 
 @Transactional
@@ -27,9 +31,14 @@ public class VideoService implements IVideoService {
 	private IFileService fileService;
 
 	@Override
-	public void upload(Video video, String pid) {
+	public void upload(HttpServletRequest request, Video video) {
 
-		video.setPid(pid);
+		User user = (User) request.getSession().getAttribute("usr");
+		video.setId(StringUtil.getUUID());
+		video.setUploadTime(DateUtil.getNowDate());
+		video.setUploadId(user.getId());
+		video.setUploadName(user.getRealName());
+		video.setState("1");
 		videoMapper.insert(video);
 	}
 
@@ -59,11 +68,11 @@ public class VideoService implements IVideoService {
 	}
 
 	@Override
-	public void show(HttpServletResponse response, String videoId, String userId) {
+	public String show(HttpServletRequest request, HttpServletResponse response, String videoId, String userId) {
 
 		if (!StringUtil.isNotNull(userId))
-			throw new AIException("游客无法观看，请登录之后再播放");
-		fileService.show(response, videoId);
+			throw new AIException(StaticVals.MSG);
+		return fileService.show(request, response, videoId);
 	}
 
 	@Override
