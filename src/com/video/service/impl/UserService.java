@@ -17,6 +17,7 @@ import com.video.service.IUserService;
 import com.video.util.DateUtil;
 import com.video.util.ErrorCode;
 import com.video.util.PasswordUtil;
+import com.video.util.StaticVals;
 import com.video.util.StringUtil;
 
 @Transactional
@@ -61,6 +62,8 @@ public class UserService implements IUserService {
 			password = PasswordUtil.encode(password, salt);
 			user.setPassword(password);
 		}
+		if(!StringUtil.isNotNull(user.getImageUrl()))
+			user.setImageUrl(StaticVals.IMG);
 		userMapper.updateByPrimaryKeySelective(user);
 	}
 

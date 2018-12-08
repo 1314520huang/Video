@@ -74,7 +74,7 @@
 			</div>
 		</div>
 		<br><br>
-		<div class="layui-form-item" id="manageDiv" style="display: none;">
+		<div class="layui-form-item" id="manageDiv" style="display: none; margin: 0 auto; background-color: rgba(0,0,0,0.5);">
 			<ul>
 				<li><a href="${ctx }/admin/user">用户管理</a></li>
 				<li><a href="${ctx }/admin/discuss">评论管理</a></li>

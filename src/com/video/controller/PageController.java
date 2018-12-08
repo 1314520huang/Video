@@ -3,6 +3,7 @@ package com.video.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -51,6 +52,28 @@ public class PageController extends BaseController {
 			throw new AIException(StaticVals.MSG);
 		// 判断当前用户是否具有管理员权限
 		return StaticVals.AdminLevel.equals(user.getLevel()) ? "admin/" + page : "error";
+	}
+	
+	@GetMapping("/show/{videoId}")
+	@Remarks("显示视频资源")
+	public String show(HttpServletRequest request, @PathVariable("videoId") String videoId) {
+
+		User user = (User) request.getSession().getAttribute("usr");
+		if (user == null)
+			throw new AIException(StaticVals.MSG);
+		request.setAttribute("videoId", videoId);
+		return "show";
+	}
+	
+	@GetMapping("/show1/{videoId}")
+	@Remarks("显示视频资源")
+	public String show1(HttpServletRequest request, @PathVariable("videoId") String videoId) {
+
+		User user = (User) request.getSession().getAttribute("usr");
+		if (user == null)
+			throw new AIException(StaticVals.MSG);
+		request.setAttribute("videoId", videoId);
+		return "admin/info";
 	}
 
 	@RequestMapping("")

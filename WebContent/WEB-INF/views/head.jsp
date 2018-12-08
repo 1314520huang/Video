@@ -39,5 +39,5 @@
 	<li><a href="${ctx }/board">影视预约</a></li>
 	<li><a href="${ctx }/info">个人中心</a></li>
 </ul>
-<br><br><br>
+<br><br>
 </html>

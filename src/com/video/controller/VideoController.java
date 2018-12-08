@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -45,17 +46,6 @@ public class VideoController extends BaseController {
 		return response;
 	}
 
-	@GetMapping("/show")
-	@ResponseBody
-	@Remarks("显示视频资源")
-	public AjaxResponse show(HttpServletRequest request, HttpServletResponse response, String videoId, String userId) {
-
-		AjaxResponse respons = new AjaxResponse();
-		String url = videoService.show(request, response, videoId, userId);
-		respons.setData(url);
-		return respons;
-	}
-
 	@GetMapping("/star")
 	@ResponseBody
 	@Remarks("推荐榜")
@@ -68,7 +58,17 @@ public class VideoController extends BaseController {
 		return response;
 	}
 
-	@GetMapping("/")
+	@RequestMapping("/delete")
+	@ResponseBody
+	@Remarks("删除资源")
+	public AjaxResponse delete(HttpServletRequest request, String id) {
+
+		AjaxResponse response = new AjaxResponse();
+		videoService.delete(id);
+		return response;
+	}
+
+	@GetMapping("/all")
 	@ResponseBody
 	@Remarks("列表页")
 	public AjaxResponse list(String pageIndex, String pageSize) {
@@ -76,6 +76,28 @@ public class VideoController extends BaseController {
 		AjaxResponse response = new AjaxResponse();
 		int value[] = StringUtil.getInt(pageIndex, pageSize);
 		List<Video> videos = videoService.list(value[0], value[1]);
+		response.setData(videos);
+		return response;
+	}
+
+	@GetMapping("/info/{videoId}")
+	@ResponseBody
+	@Remarks("列表页")
+	public AjaxResponse info(@PathVariable("videoId") String videoId) {
+
+		AjaxResponse response = new AjaxResponse();
+		Video video = videoService.info(videoId);
+		response.setData(video);
+		return response;
+	}
+
+	@GetMapping("/search")
+	@ResponseBody
+	@Remarks("列表页")
+	public AjaxResponse search(Video video) {
+
+		AjaxResponse response = new AjaxResponse();
+		List<Video> videos = videoService.search(video);
 		response.setData(videos);
 		return response;
 	}

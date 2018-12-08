@@ -167,7 +167,7 @@ h1 {
 							<td>{{discuss.createTime}}</td>
 						</tr>
 					</tbody>
-					<tbody id='noData' style="display: none;"><tr><td colspan="4"><span style="color: red; text-align: center;">暂无数据</span><td></tr></tbody>
+					<tbody id='noData' style="display: none; margin: 0 auto"><tr><td colspan="4"><span style="color: red; text-align: center;">暂无数据</span><td></tr></tbody>
 				</table>
 			</div>
 			</c:if>
@@ -182,7 +182,7 @@ h1 {
 </body>
 <script type="text/javascript">
 	var ctx = "${ctx}";
-	var login = <%=isLogin%>;
+	var login = "<%=isLogin%>";
 	var vm = new Vue({
 		el : "#boardDiv",
 		data : {
@@ -213,8 +213,7 @@ h1 {
 		$("#clearBt").click(function() {
 			$("#remark").val("");
 		});
-// 		if(login)
-			getDiscuss();
+		getDiscuss();
 	})
 	
 	function getDiscuss() {
@@ -224,7 +223,6 @@ h1 {
 			method : 'get',
 			dataType : 'json',
 			success : function(res) {
-				debugger;
 				if(res.code == 0) {
 					vm.discusses = res.data;
 					if(res.data.length == 0) {

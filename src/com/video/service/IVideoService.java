@@ -16,8 +16,10 @@ public interface IVideoService {
 	void delete(String videoId);
 	
 	void update(Video video);
+
+	Video info(String videoId);
 	
-	String show(HttpServletRequest request, HttpServletResponse response, String videoId, String userId);
+	Video show(HttpServletRequest request, String videoId);
 	
 	List<Video> list(int pageIndex, int pageSize);
 	

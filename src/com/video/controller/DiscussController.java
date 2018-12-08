@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,13 +33,13 @@ public class DiscussController extends BaseController {
 		return response;
 	}
 
-	@PatchMapping("")
+	@RequestMapping("/delete")
 	@ResponseBody
 	@Remarks("删除评论")
-	public AjaxResponse delete(HttpServletRequest request, String discussId) {
+	public AjaxResponse delete(HttpServletRequest request, String id) {
 
 		AjaxResponse response = new AjaxResponse();
-		discussService.delete(request, discussId);
+		discussService.delete(request, id);
 		return response;
 	}
 
@@ -54,4 +53,18 @@ public class DiscussController extends BaseController {
 		response.setData(discusses);
 		return response;
 	}
+	
+
+	@GetMapping("/all")
+	@ResponseBody
+	@Remarks("对应电影下的评论列表")
+	public AjaxResponse list() {
+
+		AjaxResponse response = new AjaxResponse();
+		List<Discuss> discusses = discussService.list();
+		response.setData(discusses);
+		return response;
+	}
+	
+	
 }

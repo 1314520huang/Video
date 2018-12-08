@@ -18,4 +18,5 @@ public class StaticVals {
 
 	// 用户尚未登录进行对应操作时候的提示信息
 	public final static String MSG = "用户尚未登录，无法进行相关操作";
+	public final static String IMG = "/Video/upload/nofind.jpg";
 }

@@ -29,17 +29,29 @@ public class DiscussService implements IDiscussService {
 	public List<Discuss> list(String videoId) {
 
 		DiscussExample example = new DiscussExample();
-		example.createCriteria().andVideoIdEqualTo(videoId).andStateEqualTo("0");
+		example.createCriteria().andVideoIdEqualTo(videoId).andStateEqualTo("1");
 		example.setOrderByClause(" discuss_time desc ");
 		return discussMapper.selectByExample(example);
 	}
 
+	@Override
+	public List<Discuss> list() {
+		
+		DiscussExample example = new DiscussExample();
+		example.createCriteria().andStateEqualTo("1");
+		example.setOrderByClause(" discuss_time desc ");
+		return discussMapper.selectByExample(example);
+	}
+	
 	@Override
 	public void add(HttpServletRequest request, Discuss discuss) {
 
 		User user = (User) request.getSession().getAttribute("usr");
 		if (user == null)
 			throw new AIException(StaticVals.MSG);
+		discuss.setUserId(user.getId());
+		discuss.setUserName(user.getRealName());
+		discuss.setState("1");
 		discuss.setId(StringUtil.getUUID());
 		discuss.setDiscussTime(DateUtil.getNowTime());
 		discussMapper.insert(discuss);

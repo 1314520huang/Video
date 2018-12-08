@@ -7,8 +7,7 @@
 <title>影视上传</title>
 <%@ include file="../common.jsp"%>
 <meta name="renderer" content="webkit">
-<link rel="stylesheet" href="${ctx }/static/layui/css/layui.css"
-	media="all">
+<link rel="stylesheet" href="${ctx }/static/layui/css/layui.css" media="all">
 <script type="text/javascript" src="${ctx }/static/layui/layui.all.js"></script>
 </head>
 <body>
@@ -298,7 +297,7 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">发行年份： </label>
 			<div class="layui-input-inline">
-				<input type="text" class="layui-input" id="year" placeholder="yyyy">
+				<input type="text" class="layui-input" id="year" placeholder="yyyy" value="2018">
 			</div>
 		</div>
 
@@ -320,7 +319,18 @@
 			<label class="layui-form-label">电影简介</label>
 			<div class="layui-input-block">
 				<textarea id="detail" placeholder="请讲述一下电影的一些基本介绍......"
-					class="layui-textarea" id="introduce"></textarea>
+					class="layui-textarea"></textarea>
+			</div>
+		</div>
+		<div class="layui-upload">
+			<label class="layui-form-label">封面图片</label>
+			<div class="layui-upload layui-input-block">
+				<img class="layui-upload-img" id="headImg" src="${ctx }/upload/nofind.jpg" style="height: 120px;"> 
+					<input type="hidden" id="imageUrl" src=""/> 
+				    <button type="button" class="layui-btn layui-btn-primary" id="fileBtn">
+						<i class="layui-icon">&#xe67c;</i>选择封面相册
+					</button>
+					<button type="button" class="layui-btn layui-btn-warm" id="uploadBtn">开始上传</button>
 			</div>
 		</div>
 	</form>
@@ -346,6 +356,7 @@
 	<jsp:include page="../foot.jsp"></jsp:include>
 </body>
 <script>
+	var ctx = "${ctx}";
 	var xhrOnProgress = function(fun) {
 		xhrOnProgress.onprogress = fun; //绑定监听
 		//使用闭包实现监听绑
@@ -362,7 +373,22 @@
 			return xhr;
 		}
 	}
-
+	
+	layui.use('upload', function() {
+		var upload = layui.upload;
+		upload.render({
+			elem : '#fileBtn',
+			url : '${ctx}/files',
+			accept : 'file',
+			auto : false,
+			bindAction : '#uploadBtn',
+			done : function(res) {
+				$("#headImg").attr("src", res.data);
+				$("#imageUrl").val(res.data);
+			}
+		});
+	});
+	
 	layui.use(
 		[ 'upload', 'element', 'layer' ], function() {
 			var $ = layui.jquery, upload = layui.upload, element = layui.element, layer = layui.layer;
@@ -415,22 +441,17 @@
 
 	function uploadInfo(url) {
 
-		var name = $("#name").val();
-		var country = $("#country").find("option:selected").text();
-		var belong_key = $("#belong").find("option:selected").val();
-		var belong_value = $("#belong").find("option:selected").text();
-		var type = $("#type").find("option:selected").val();
-		var year = $("#year").val();
-		var detail = $("#detail").val();
 		var video = {};
-		video.name = name;
-		video.country = country;
-		video.detail = detail;
-		video.year = year;
-		video.belongKey = belong_key;
-		video.belongValue = belong_value;
-		video.type = type;
-		video.pid = url;
+		video.name = $("#name").val();
+		video.country = $("#country").find("option:selected").text();
+		video.detail = $("#detail").val();
+		video.year = $("#year").val();
+		video.belongKey = $("#belong").find("option:selected").val();
+		video.belongValue = $("#belong").find("option:selected").text();
+		video.type = $("#type").find("option:selected").val();
+		video.value = $("#type").find("option:selected").text();
+		video.imgUrl = $("#imageUrl").val();
+		video.videoUrl = url;
 		console.log(video);
 		$.ajax({
 			url : "${ctx}/videos",
@@ -441,8 +462,10 @@
 			success : function(res) {
 				if (res.code != 0)
 					layer.alert(res.message);
-				else
+				else {
 					alert("上传成功");
+					window.location.href = ctx;
+				}
 			},
 			error : function() {
 				layer.alert("网络连接有误，请稍后！")

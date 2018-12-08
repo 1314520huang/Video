@@ -15,7 +15,7 @@
 </head>
 <body>
 	<jsp:include page="../head.jsp"></jsp:include>
-	<div class="table-container" style="width: 90%; margin: 0 auto">
+	<div class="table-container" style="width: 90%; margin: 0 auto; style="height: 600px; overflow: auto;"">
 		<table id="table" class="table layui-table">
 			<thead style="text-align: center;">
 				<tr>
@@ -29,7 +29,7 @@
 			</thead>
 			<tbody id="tbody" style="text-align: center;"></tbody>
 		</table>
-		<div id="pagination" style="text-align: right;"></div>
+<!-- 		<div id="pagination" style="text-align: right;"></div> -->
 	</div>
 	<jsp:include page="../foot.jsp"></jsp:include>
 </body>
@@ -73,7 +73,7 @@
 			laypage.render({
 				elem : 'pagination',
 				count : data.length,
-				layout: ['prev', 'page', 'next', 'count'],
+// 				layout: ['prev', 'page', 'next', 'count'],
 				jump : function(obj) {
 					document.getElementById('tbody').innerHTML = function() {
 						var arr = [], thisData = data.concat().splice(

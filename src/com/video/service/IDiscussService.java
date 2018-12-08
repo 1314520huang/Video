@@ -10,6 +10,8 @@ public interface IDiscussService {
 
 	List<Discuss> list(String videoId);
 
+	List<Discuss> list();
+
 	void add(HttpServletRequest request, Discuss discuss);
 
 	void delete(HttpServletRequest request, String videoId);

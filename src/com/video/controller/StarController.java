@@ -2,6 +2,8 @@ package com.video.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,10 +26,10 @@ public class StarController extends BaseController {
 	@PostMapping("")
 	@ResponseBody
 	@Remarks("Ìí¼ÓÆÀ·Ö¼ÇÂ¼")
-	public AjaxResponse add(Star star) {
+	public AjaxResponse add(HttpServletRequest request, Star star) {
 
 		AjaxResponse response = new AjaxResponse();
-
+		starService.add(request, star);
 		return response;
 	}
 

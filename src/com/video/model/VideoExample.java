@@ -824,73 +824,73 @@ public class VideoExample {
             return (Criteria) this;
         }
 
-        public Criteria andPidIsNull() {
-            addCriterion("pid is null");
+        public Criteria andVideoUrlIsNull() {
+            addCriterion("video_url is null");
             return (Criteria) this;
         }
 
-        public Criteria andPidIsNotNull() {
-            addCriterion("pid is not null");
+        public Criteria andVideoUrlIsNotNull() {
+            addCriterion("video_url is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPidEqualTo(String value) {
-            addCriterion("pid =", value, "pid");
+        public Criteria andVideoUrlEqualTo(String value) {
+            addCriterion("video_url =", value, "videoUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPidNotEqualTo(String value) {
-            addCriterion("pid <>", value, "pid");
+        public Criteria andVideoUrlNotEqualTo(String value) {
+            addCriterion("video_url <>", value, "videoUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPidGreaterThan(String value) {
-            addCriterion("pid >", value, "pid");
+        public Criteria andVideoUrlGreaterThan(String value) {
+            addCriterion("video_url >", value, "videoUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPidGreaterThanOrEqualTo(String value) {
-            addCriterion("pid >=", value, "pid");
+        public Criteria andVideoUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("video_url >=", value, "videoUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPidLessThan(String value) {
-            addCriterion("pid <", value, "pid");
+        public Criteria andVideoUrlLessThan(String value) {
+            addCriterion("video_url <", value, "videoUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPidLessThanOrEqualTo(String value) {
-            addCriterion("pid <=", value, "pid");
+        public Criteria andVideoUrlLessThanOrEqualTo(String value) {
+            addCriterion("video_url <=", value, "videoUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPidLike(String value) {
-            addCriterion("pid like", value, "pid");
+        public Criteria andVideoUrlLike(String value) {
+            addCriterion("video_url like", value, "videoUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPidNotLike(String value) {
-            addCriterion("pid not like", value, "pid");
+        public Criteria andVideoUrlNotLike(String value) {
+            addCriterion("video_url not like", value, "videoUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPidIn(List<String> values) {
-            addCriterion("pid in", values, "pid");
+        public Criteria andVideoUrlIn(List<String> values) {
+            addCriterion("video_url in", values, "videoUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPidNotIn(List<String> values) {
-            addCriterion("pid not in", values, "pid");
+        public Criteria andVideoUrlNotIn(List<String> values) {
+            addCriterion("video_url not in", values, "videoUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPidBetween(String value1, String value2) {
-            addCriterion("pid between", value1, value2, "pid");
+        public Criteria andVideoUrlBetween(String value1, String value2) {
+            addCriterion("video_url between", value1, value2, "videoUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPidNotBetween(String value1, String value2) {
-            addCriterion("pid not between", value1, value2, "pid");
+        public Criteria andVideoUrlNotBetween(String value1, String value2) {
+            addCriterion("video_url not between", value1, value2, "videoUrl");
             return (Criteria) this;
         }
 
@@ -1101,6 +1101,326 @@ public class VideoExample {
 
         public Criteria andTypeNotBetween(String value1, String value2) {
             addCriterion("type not between", value1, value2, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarNumIsNull() {
+            addCriterion("star_num is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarNumIsNotNull() {
+            addCriterion("star_num is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarNumEqualTo(Integer value) {
+            addCriterion("star_num =", value, "starNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarNumNotEqualTo(Integer value) {
+            addCriterion("star_num <>", value, "starNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarNumGreaterThan(Integer value) {
+            addCriterion("star_num >", value, "starNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarNumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("star_num >=", value, "starNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarNumLessThan(Integer value) {
+            addCriterion("star_num <", value, "starNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarNumLessThanOrEqualTo(Integer value) {
+            addCriterion("star_num <=", value, "starNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarNumIn(List<Integer> values) {
+            addCriterion("star_num in", values, "starNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarNumNotIn(List<Integer> values) {
+            addCriterion("star_num not in", values, "starNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarNumBetween(Integer value1, Integer value2) {
+            addCriterion("star_num between", value1, value2, "starNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarNumNotBetween(Integer value1, Integer value2) {
+            addCriterion("star_num not between", value1, value2, "starNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarSumIsNull() {
+            addCriterion("star_sum is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarSumIsNotNull() {
+            addCriterion("star_sum is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarSumEqualTo(Integer value) {
+            addCriterion("star_sum =", value, "starSum");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarSumNotEqualTo(Integer value) {
+            addCriterion("star_sum <>", value, "starSum");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarSumGreaterThan(Integer value) {
+            addCriterion("star_sum >", value, "starSum");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarSumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("star_sum >=", value, "starSum");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarSumLessThan(Integer value) {
+            addCriterion("star_sum <", value, "starSum");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarSumLessThanOrEqualTo(Integer value) {
+            addCriterion("star_sum <=", value, "starSum");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarSumIn(List<Integer> values) {
+            addCriterion("star_sum in", values, "starSum");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarSumNotIn(List<Integer> values) {
+            addCriterion("star_sum not in", values, "starSum");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarSumBetween(Integer value1, Integer value2) {
+            addCriterion("star_sum between", value1, value2, "starSum");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarSumNotBetween(Integer value1, Integer value2) {
+            addCriterion("star_sum not between", value1, value2, "starSum");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueIsNull() {
+            addCriterion("value is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueIsNotNull() {
+            addCriterion("value is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueEqualTo(String value) {
+            addCriterion("value =", value, "value");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueNotEqualTo(String value) {
+            addCriterion("value <>", value, "value");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueGreaterThan(String value) {
+            addCriterion("value >", value, "value");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueGreaterThanOrEqualTo(String value) {
+            addCriterion("value >=", value, "value");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueLessThan(String value) {
+            addCriterion("value <", value, "value");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueLessThanOrEqualTo(String value) {
+            addCriterion("value <=", value, "value");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueLike(String value) {
+            addCriterion("value like", value, "value");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueNotLike(String value) {
+            addCriterion("value not like", value, "value");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueIn(List<String> values) {
+            addCriterion("value in", values, "value");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueNotIn(List<String> values) {
+            addCriterion("value not in", values, "value");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueBetween(String value1, String value2) {
+            addCriterion("value between", value1, value2, "value");
+            return (Criteria) this;
+        }
+
+        public Criteria andValueNotBetween(String value1, String value2) {
+            addCriterion("value not between", value1, value2, "value");
+            return (Criteria) this;
+        }
+
+        public Criteria andAverageIsNull() {
+            addCriterion("average is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAverageIsNotNull() {
+            addCriterion("average is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAverageEqualTo(Double value) {
+            addCriterion("average =", value, "average");
+            return (Criteria) this;
+        }
+
+        public Criteria andAverageNotEqualTo(Double value) {
+            addCriterion("average <>", value, "average");
+            return (Criteria) this;
+        }
+
+        public Criteria andAverageGreaterThan(Double value) {
+            addCriterion("average >", value, "average");
+            return (Criteria) this;
+        }
+
+        public Criteria andAverageGreaterThanOrEqualTo(Double value) {
+            addCriterion("average >=", value, "average");
+            return (Criteria) this;
+        }
+
+        public Criteria andAverageLessThan(Double value) {
+            addCriterion("average <", value, "average");
+            return (Criteria) this;
+        }
+
+        public Criteria andAverageLessThanOrEqualTo(Double value) {
+            addCriterion("average <=", value, "average");
+            return (Criteria) this;
+        }
+
+        public Criteria andAverageIn(List<Double> values) {
+            addCriterion("average in", values, "average");
+            return (Criteria) this;
+        }
+
+        public Criteria andAverageNotIn(List<Double> values) {
+            addCriterion("average not in", values, "average");
+            return (Criteria) this;
+        }
+
+        public Criteria andAverageBetween(Double value1, Double value2) {
+            addCriterion("average between", value1, value2, "average");
+            return (Criteria) this;
+        }
+
+        public Criteria andAverageNotBetween(Double value1, Double value2) {
+            addCriterion("average not between", value1, value2, "average");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlIsNull() {
+            addCriterion("img_url is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlIsNotNull() {
+            addCriterion("img_url is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlEqualTo(String value) {
+            addCriterion("img_url =", value, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlNotEqualTo(String value) {
+            addCriterion("img_url <>", value, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlGreaterThan(String value) {
+            addCriterion("img_url >", value, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("img_url >=", value, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlLessThan(String value) {
+            addCriterion("img_url <", value, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlLessThanOrEqualTo(String value) {
+            addCriterion("img_url <=", value, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlLike(String value) {
+            addCriterion("img_url like", value, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlNotLike(String value) {
+            addCriterion("img_url not like", value, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlIn(List<String> values) {
+            addCriterion("img_url in", values, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlNotIn(List<String> values) {
+            addCriterion("img_url not in", values, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlBetween(String value1, String value2) {
+            addCriterion("img_url between", value1, value2, "imgUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andImgUrlNotBetween(String value1, String value2) {
+            addCriterion("img_url not between", value1, value2, "imgUrl");
             return (Criteria) this;
         }
     }
